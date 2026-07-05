@@ -1,0 +1,28 @@
+name: Deploy ADF to QA
+
+on:
+  push:
+    branches: [adf_publish]
+  workflow_dispatch:
+
+jobs:
+  deploy-adf-qa:
+    runs-on: ubuntu-latest
+    environment: qa
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: adf_publish
+
+      - name: Azure Login
+        uses: azure/login@v2
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS_QA }}
+
+      - name: Deploy ARM template to QA ADF
+        uses: azure/arm-deploy@v2
+        with:
+          scope: resourcegroup
+          resourceGroupName: databricks_group
+          template: ./ARMTemplateForFactory.json
+          parameters: ./ARMTemplateParametersForFactory.json qaFactoryName=adf-mybigdata-qa
