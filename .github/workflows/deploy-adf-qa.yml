@@ -25,4 +25,4 @@ jobs:
           scope: resourcegroup
           resourceGroupName: rg-databricks-qa
           template: ./adf-mybigdata-dev/ARMTemplateForFactory.json
-          parameters: ./adf-mybigdata-dev/ARMTemplateParametersForFactory.json
+          parameters: ./adf-mybigdata-dev/ARMTemplateParametersForFactory.json factoryName=adf-mybigdata-qa
