@@ -23,6 +23,6 @@ jobs:
         uses: azure/arm-deploy@v2
         with:
           scope: resourcegroup
-          resourceGroupName: databricks_group
+          resourceGroupName: rg-databricks-qa
           template: ./ARMTemplateForFactory.json
           parameters: ./ARMTemplateParametersForFactory.json qaFactoryName=adf-mybigdata-qa
